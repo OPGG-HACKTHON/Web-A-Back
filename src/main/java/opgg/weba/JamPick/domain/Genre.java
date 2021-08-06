@@ -14,13 +14,10 @@ public class Genre {
     private Long genreId;
 
     @Column(name = "description")
-    private String descrition;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "app_id")
-    private AppDetail appDetail;
+    private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "indie_app_id")
     private IndieApp indieApp;
+
 }
