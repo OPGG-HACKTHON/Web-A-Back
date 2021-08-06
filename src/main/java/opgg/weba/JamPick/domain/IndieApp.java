@@ -2,29 +2,39 @@ package opgg.weba.JamPick.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import opgg.weba.JamPick.domain.Genre;
+import opgg.weba.JamPick.domain.Movie;
+import opgg.weba.JamPick.domain.Screenshot;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter
-@Setter
+@Getter @Setter
 public class IndieApp {
 
     @Id
     @Column(name = "indie_app_id")
     private Long id;
 
-    @Column(name = "average_forever") //어떤 용도?
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "is_free")
+    private Boolean isFree;
+
+    @Column(name = "detailed_description")
+    private String detailedDescription;
+
+    @Column(name = "release_date")
+    private String releaseDate;
+
+    @Column(name = "average_forever")
     private Integer averageForever;
 
-    @Column(name = "ccu") //어떤 용도?
+    @Column(name = "ccu")
     private Integer ccu;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "app_id")
-    private AppDetail appId;
 
     @OneToMany(mappedBy = "indie_app")
     @JoinColumn(name = "genre_id")

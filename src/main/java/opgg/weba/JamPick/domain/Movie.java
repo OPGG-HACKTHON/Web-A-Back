@@ -21,10 +21,6 @@ public class Movie {
     private String mp4;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "app_id")
-    private AppDetail appId;
-
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "indie_app")
     private IndieApp indieAppId;
 }
