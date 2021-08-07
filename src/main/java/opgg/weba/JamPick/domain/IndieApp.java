@@ -36,6 +36,9 @@ public class IndieApp {
     @Column(name = "ccu")
     private Integer ccu;
 
+    @Column(name = "header_image")
+    private String header_image;
+
     @OneToMany(mappedBy = "indie_app")
     @JoinColumn(name = "genre_id")
     private List<Genre> genres = new ArrayList<>();
