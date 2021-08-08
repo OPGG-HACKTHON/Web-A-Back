@@ -1,34 +1,30 @@
 package opgg.weba.JamPick.controller;
 
 import lombok.RequiredArgsConstructor;
-import opgg.weba.JamPick.dto.ResponseDto;
-import opgg.weba.JamPick.dto.RouletteRecCriteriaDto;
-import opgg.weba.JamPick.dto.RouletteRecDto;
+import opgg.weba.JamPick.dto.ResponseDTO;
+import opgg.weba.JamPick.dto.RouletteRecDTO;
 import opgg.weba.JamPick.service.RouletteRecService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.List;
-
-@RestController
-@RequestMapping("/api")
+@Controller
 @RequiredArgsConstructor
 public class HomeViewController {
 
     private final RouletteRecService rouletteRecService;
 
-    @PostMapping(value = "/roulette-recommendation")
-    public ResponseEntity getRouletteApp(@RequestBody RouletteRecCriteriaDto request) {
+    @GetMapping(value = "/api/roulette-recommendation")
+    public ResponseEntity getRouletteApp() {
 
-        RouletteRecDto result = rouletteRecService.findRouletteApp(request);
+        RouletteRecDTO result = rouletteRecService.findRouletteApp();
 
-        ResponseDto responseDto = ResponseDto.builder()
+        ResponseDTO responseDTO = ResponseDTO.builder()
                 .status(200)
                 .responseMessage("룰렛 인디게임 조회 성공")
                 .data(result)
                 .build();
 
-        return ResponseEntity.ok(responseDto);
+        return ResponseEntity.ok(responseDTO);
     }
 }
