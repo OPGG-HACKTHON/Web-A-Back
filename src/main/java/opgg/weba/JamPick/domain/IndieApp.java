@@ -39,15 +39,12 @@ public class IndieApp {
     @Column(name = "header_image")
     private String header_image;
 
-    @OneToMany(mappedBy = "indie_app")
-    @JoinColumn(name = "genre_id")
+    @OneToMany(mappedBy = "indieApp")
     private List<Genre> genres = new ArrayList<>();
 
-    @OneToMany(mappedBy = "indie_app")
-    @JoinColumn(name = "movie_id")
+    @OneToMany(mappedBy = "indieApp")
     private List<Movie> movies = new ArrayList<>();
 
-    @OneToMany(mappedBy = "indie_app")
-    @JoinColumn(name = "screenshot_id")
+    @OneToMany(mappedBy = "indieApp")
     private List<Screenshot> screenshots = new ArrayList<>();
 }
