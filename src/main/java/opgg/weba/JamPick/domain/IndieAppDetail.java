@@ -13,6 +13,9 @@ public class IndieAppDetail {
     @Column(name = "indie_app_detail_id")
     private Long id;
 
+    @Column(name = "supported_language") //TODO 데이터 타입 정하기
+    private String supportedLanguage;
+
     @Column(name = "release_date")
     private String releaseDate;
 

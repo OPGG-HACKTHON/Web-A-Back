@@ -40,6 +40,9 @@ public class IndieApp {
     private List<IndieAppDetail> indieAppDetails = new ArrayList<>();
 
     @OneToMany(mappedBy = "indieApp")
+    private List<IndieAppDetail> indieAppDetail = new ArrayList<>();
+
+    @OneToMany(mappedBy = "indieApp")
     private List<Genre> genres = new ArrayList<>();
 
     @OneToMany(mappedBy = "indieApp")
