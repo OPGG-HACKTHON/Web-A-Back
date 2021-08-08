@@ -24,11 +24,8 @@ public class IndieApp {
     @Column(name = "is_free")
     private Boolean isFree;
 
-    @Column(name = "detailed_description")
-    private String detailedDescription;
-
-    @Column(name = "release_date")
-    private String releaseDate;
+    @Column(name = "short_description")
+    private String shortDescription;
 
     @Column(name = "average_forever")
     private Integer averageForever;
@@ -38,6 +35,9 @@ public class IndieApp {
 
     @Column(name = "header_image")
     private String header_image;
+
+    @OneToMany(mappedBy = "indieApp")
+    private List<IndieAppDetail> indieAppDetail = new ArrayList<>();
 
     @OneToMany(mappedBy = "indieApp")
     private List<Genre> genres = new ArrayList<>();
