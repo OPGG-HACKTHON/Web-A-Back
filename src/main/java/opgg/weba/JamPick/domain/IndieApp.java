@@ -34,10 +34,10 @@ public class IndieApp {
     private Integer ccu;
 
     @Column(name = "header_image")
-    private String header_image;
+    private String headerImage;
 
     @OneToMany(mappedBy = "indieApp")
-    private List<IndieAppDetail> indieAppDetail = new ArrayList<>();
+    private List<IndieAppDetail> indieAppDetails = new ArrayList<>();
 
     @OneToMany(mappedBy = "indieApp")
     private List<Genre> genres = new ArrayList<>();
