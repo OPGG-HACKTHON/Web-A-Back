@@ -7,14 +7,17 @@ import javax.persistence.*;
 
 @Entity
 @Getter @Setter
-public class Genre {
+public class IndieAppDetail {
 
     @Id
-    @Column(name = "genre_id")
-    private Long genreId;
+    @Column(name = "indie_app_detail_id")
+    private Long id;
 
-    @Column(name = "description")
-    private String description;
+    @Column(name = "release_date")
+    private String releaseDate;
+
+    @Column(name = "short_description")
+    private String shortDescription;
 
     @Column(name = "language")
     private String language;
@@ -22,5 +25,4 @@ public class Genre {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "indie_app_id")
     private IndieApp indieApp;
-
 }

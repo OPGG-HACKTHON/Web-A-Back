@@ -13,8 +13,8 @@ public class Screenshot {
     @Column(name = "screenshot_id")
     private Long screenshotId;
 
-    @Column(name = "path_thumb_nail")
-    private String pathThumbNail;
+    @Column(name = "path_thumbnail")
+    private String pathThumbnail;
 
     @Column(name = "path_full")
     private String pathFull;
