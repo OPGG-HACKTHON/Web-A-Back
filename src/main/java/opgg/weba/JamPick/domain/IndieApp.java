@@ -24,9 +24,6 @@ public class IndieApp {
     @Column(name = "is_free")
     private Boolean isFree;
 
-    @Column(name = "short_description")
-    private String shortDescription;
-
     @Column(name = "average_forever")
     private Integer averageForever;
 
