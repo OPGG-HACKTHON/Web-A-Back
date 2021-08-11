@@ -10,7 +10,6 @@ public class GetLocale {
 
     public static Locale getLocale() {
 
-        Locale locale = LocaleContextHolder.getLocale();
         return locale;
     }
 }
