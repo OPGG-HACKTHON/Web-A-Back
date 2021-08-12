@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @RequiredArgsConstructor
 @Getter
-public class RouletteRecDTO {
+public class RouletteRecDto {
     private final Long id;
     private final String header_image;
 }

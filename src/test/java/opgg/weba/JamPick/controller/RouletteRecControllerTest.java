@@ -1,6 +1,5 @@
 package opgg.weba.JamPick.controller;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import opgg.weba.JamPick.domain.Genre;
@@ -57,6 +56,4 @@ public class RouletteRecControllerTest {
                 .andExpect(status().isOk())
                 .andDo(print());
     }
-
-
 }
