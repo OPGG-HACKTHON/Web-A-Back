@@ -5,8 +5,11 @@ import opgg.weba.JamPick.dto.ResponseDto;
 import opgg.weba.JamPick.dto.RouletteRecCriteriaDto;
 import opgg.weba.JamPick.dto.RouletteRecDto;
 import opgg.weba.JamPick.service.RouletteRecService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
