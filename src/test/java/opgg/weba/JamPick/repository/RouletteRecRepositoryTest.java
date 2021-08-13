@@ -20,32 +20,20 @@ import java.util.List;
 @Transactional
 public class RouletteRecRepositoryTest {
 
-    @PersistenceContext
-    EntityManager em;
-
     @Autowired RouletteRecRepository rouletteRecRepository;
 
     @Test
-    public void 룰렛추천() {
+    public void RouletteRecRepositoryTest() {
 
-        IndieApp indieApp = new IndieApp();
-        indieApp.setId(1L);
-        indieApp.setName("Hi");
-        indieApp.setHeaderImage("Image_URL");
-        em.persist(indieApp);
-
-        Genre genre = new Genre();
-        genre.setGenreId(11L);
-        genre.setDescription("호러");
-        genre.setIndieApp(indieApp);
-        em.persist(genre);
-
+        //given
         RouletteRecCriteriaDto request = new RouletteRecCriteriaDto();
-        request.setGenreList(List.of("호러"));
+        request.setGenreList(List.of("호러", "액션"));
 
+        //when
         RouletteRecDto rouletteApp = rouletteRecRepository.findOne(request);
 
-        Assertions.assertThat(rouletteApp.getHeader_image()).isEqualTo("Image_URL");
+        //then
+        Assertions.assertThat(rouletteApp.getHeader_image()).isEqualTo("url1");
     }
 
 }
