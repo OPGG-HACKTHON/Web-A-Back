@@ -50,29 +50,6 @@ public class RouletteRecControllerTest {
 
     @Test
     public void RouletteRecControllerTest() throws Exception {
-    @Autowired
-    private MockMvc mockMvc;
-
-    @Autowired
-    ObjectMapper objectMapper;
-
-    @Autowired
-    RouletteRecRepository rouletteRecRepository;
-
-    @Test
-    public void RouletteRecControllerTest() throws Exception {
-
-        RouletteRecCriteriaDto request = new RouletteRecCriteriaDto();
-        request.setGenreList(List.of("호러", "액션"));
-
-        mockMvc.perform(post("/api/roulette-recommendation")
-                .content(objectMapper.writeValueAsString(request))
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andDo(print());
-    }
-
 
         RouletteRecCriteriaDto request = new RouletteRecCriteriaDto();
         request.setGenreList(List.of("호러", "액션"));
