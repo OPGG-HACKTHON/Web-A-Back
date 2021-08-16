@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 @Component
-public class DemoException {
-    public final String ENTITY_NOT_FOUND_TEMPLATE = "Requested {0} does not exists. Requested value: {1}";
-    public final String ENTITY_EXCEPTION_TEMPLATE = "Requested {0} raise exception. Detail: {1}";
+public class JampickException {
+    public final static String ENTITY_NOT_FOUND_TEMPLATE = "Requested {0} does not exists. Requested value: {1}";
+    public final static String ENTITY_EXCEPTION_TEMPLATE = "Requested {0} raise exception. Detail: {1}";
 
     public static RuntimeException throwException(String template, String... args) {
         return new RuntimeException(format(template, args));
