@@ -55,7 +55,7 @@ public class RouletteRecControllerTest {
     public void before() {
 
         IndieApp indieApp1 = new IndieApp();
-        indieApp1.setId(1L);
+        indieApp1.setId(11L);
         indieApp1.setName("Hi");
         indieApp1.setHeaderImage("url1");
         em.persist(indieApp1);
@@ -67,7 +67,7 @@ public class RouletteRecControllerTest {
         em.persist(genre1);
 
         IndieApp indieApp2 = new IndieApp();
-        indieApp2.setId(2L);
+        indieApp2.setId(22L);
         indieApp2.setName("Hello");
         indieApp2.setHeaderImage("url2");
         em.persist(indieApp2);

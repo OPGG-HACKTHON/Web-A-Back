@@ -19,7 +19,7 @@ public class RouletteRecRepository {
 
         return  em.createQuery(
                 "select new opgg.weba.JamPick.dto.RouletteRecDto(i.id, i.headerImage)" +
-                        " from IndieApp i join i.genres g where g.description in :request group by i.id", RouletteRecDto.class)
+                        " from IndieApp i join i.genres g where g.description in :request", RouletteRecDto.class)
                 .setParameter("request", request.getGenreList())
                 .getSingleResult();
     }
