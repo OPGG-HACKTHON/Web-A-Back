@@ -3,7 +3,6 @@ package opgg.weba.JamPick.dto;
 import lombok.Data;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
