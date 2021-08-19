@@ -1,7 +1,6 @@
 package opgg.weba.JamPick.service;
 
 import lombok.RequiredArgsConstructor;
-import opgg.weba.JamPick.dto.RouletteRecCriteriaDto;
 import opgg.weba.JamPick.dto.RouletteRecDto;
 import opgg.weba.JamPick.repository.RouletteRecRepository;
 import org.springframework.stereotype.Service;
@@ -17,7 +16,7 @@ public class RouletteRecService {
     private final RouletteRecRepository rouletteRecRepository;
 
     @Transactional
-    public RouletteRecDto findRouletteApp(RouletteRecCriteriaDto request) {
+    public RouletteRecDto findRouletteApp(List<String> request) {
         return rouletteRecRepository.findOne(request);
     }
 }

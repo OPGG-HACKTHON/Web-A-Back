@@ -1,38 +1,26 @@
 package opgg.weba.JamPick.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import opgg.weba.JamPick.domain.Genre;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import opgg.weba.JamPick.domain.Genre;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import opgg.weba.JamPick.domain.IndieApp;
-import opgg.weba.JamPick.dto.RouletteRecCriteriaDto;
 import opgg.weba.JamPick.repository.RouletteRecRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.filter.CharacterEncodingFilter;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.swing.text.html.Option;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+import java.util.Locale;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -56,40 +44,66 @@ public class RouletteRecControllerTest {
 
         IndieApp indieApp1 = new IndieApp();
         indieApp1.setId(11L);
-        indieApp1.setName("Hi");
+        indieApp1.setName("App1");
         indieApp1.setHeaderImage("url1");
         em.persist(indieApp1);
 
         Genre genre1 = new Genre();
         genre1.setGenreId(11L);
-        genre1.setDescription("호러");
+        genre1.setLanguage("ko_KR");
+        genre1.setDescription("액션");
         genre1.setIndieApp(indieApp1);
         em.persist(genre1);
 
-        IndieApp indieApp2 = new IndieApp();
-        indieApp2.setId(22L);
-        indieApp2.setName("Hello");
-        indieApp2.setHeaderImage("url2");
-        em.persist(indieApp2);
-
         Genre genre2 = new Genre();
         genre2.setGenreId(22L);
-        genre2.setDescription("인디");
-        genre2.setIndieApp(indieApp2);
+        genre2.setLanguage("ko_KR");
+        genre2.setDescription("RPG");
+        genre2.setIndieApp(indieApp1);
         em.persist(genre2);
+
+        Genre genre0 = new Genre();
+        genre0.setGenreId(111L);
+        genre0.setLanguage("ko_KR");
+        genre0.setDescription("호러");
+        genre0.setIndieApp(indieApp1);
+        em.persist(genre0);
+
+        IndieApp indieApp2 = new IndieApp();
+        indieApp2.setId(22L);
+        indieApp2.setName("App2");
+        em.persist(indieApp2);
+
+        Genre genre3 = new Genre();
+        genre3.setGenreId(33L);
+        genre3.setLanguage("ko_KR");
+        genre3.setDescription("액션");
+        genre3.setIndieApp(indieApp2);
+        em.persist(genre3);
+
+        Genre genre4 = new Genre();
+        genre4.setGenreId(44L);
+        genre4.setLanguage("ko_KR");
+        genre4.setDescription("스포츠");
+        genre4.setIndieApp(indieApp2);
+        em.persist(genre4);
     }
 
     @Test
     public void RouletteRecControllerTest() throws Exception {
 
-        RouletteRecCriteriaDto request = new RouletteRecCriteriaDto();
-        request.setGenreList(List.of("호러", "액션"));
+        List<String> request = new ArrayList<>();
+        request.add("스포츠");
+        request.add("액션");
 
         mockMvc.perform(post("/api/roulette-recommendation")
                 .content(objectMapper.writeValueAsString(request))
+                        .locale(Locale.KOREA)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andDo(print());
+                .andDo(print())
+                .andReturn()
+                .getResponse();
     }
 }

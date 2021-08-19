@@ -2,11 +2,9 @@ package opgg.weba.JamPick.controller;
 
 import lombok.RequiredArgsConstructor;
 import opgg.weba.JamPick.dto.ResponseDto;
-import opgg.weba.JamPick.dto.RouletteRecCriteriaDto;
 import opgg.weba.JamPick.dto.RouletteRecDto;
 import opgg.weba.JamPick.service.HomeViewService;
 import opgg.weba.JamPick.service.RouletteRecService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +19,7 @@ public class HomeViewController {
     private final HomeViewService homeViewService;
 
     @PostMapping(value = "/roulette-recommendation")
-    public ResponseEntity getRouletteApp(@RequestBody RouletteRecCriteriaDto request) {
+    public ResponseEntity getRouletteApp(@RequestBody List<String> request) {
 
         RouletteRecDto result = rouletteRecService.findRouletteApp(request);
 
