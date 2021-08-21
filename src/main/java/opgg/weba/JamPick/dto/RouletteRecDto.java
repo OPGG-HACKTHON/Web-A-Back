@@ -20,4 +20,11 @@ public class RouletteRecDto {
         this.header_image = header_image;
         this.genres = List.of(genres.split(","));
     }
+
+    public RouletteRecDto(Long id, String name, String header_image, List<String> genres) {
+        this.id = id;
+        this.name = name;
+        this.header_image = header_image;
+        this.genres = genres;
+    }
 }
