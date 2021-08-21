@@ -9,13 +9,12 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Transactional
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class RouletteRecService {
 
     private final RouletteRecRepository rouletteRecRepository;
 
-    @Transactional
     public RouletteRecDto findRouletteApp(List<String> request) {
         return rouletteRecRepository.findOne(request);
     }
