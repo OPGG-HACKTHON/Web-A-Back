@@ -1,0 +1,27 @@
+ifndef::snippets[]
+:snippets: ../../../build/generated-snippets
+endif::[]
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 4
+:sectlinks:
+:site-url: /build/asciidoc/html5/
+
+=== RouletteRec
+
+==== GET
+===== Request
+Request 형식은 다음과 같다:
+include::{snippets}/HomeView/http-request.adoc[]
+
+====== Try with curl
+include::{snippets}/HomeView/curl-request.adoc[]
+
+===== Response
+성공할 경우 response 형식은 다음과 같다:
+include::{snippets}/HomeView/http-response.adoc[]
+
+====== Response Fields
+include::{snippets}/HomeView/response-fields.adoc[]
