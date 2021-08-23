@@ -27,15 +27,12 @@ import static opgg.weba.JamPick.util.ApiDocumentUtils.getDocumentResponse;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
-import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
-import static org.springframework.restdocs.request.RequestDocumentation.requestParameters;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@ExtendWith({RestDocumentationExtension.class, SpringExtension.class}) //TODO -> 주석 처리하고도 되는지 확인해보기
 @WebMvcTest(controllers = HomeViewController.class)
-@AutoConfigureRestDocs()
+@AutoConfigureRestDocs(outputDir = "build/snippets")
 public class HomeViewControllerTest {
 
     @Autowired
