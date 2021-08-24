@@ -77,7 +77,7 @@ public class RandomRecRepositoryTest {
         List<RandomRecDto> result = randomRecRepository.findRandomApps();
         
         //then
-        Assertions.assertThat(result.get(0).getName()).isEqualTo("app1");
+        Assertions.assertThat(result.get(0).getName()).isEqualTo("App1");
     }
 
 
