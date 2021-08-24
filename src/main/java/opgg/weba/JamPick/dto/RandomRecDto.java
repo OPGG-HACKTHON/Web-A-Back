@@ -4,6 +4,8 @@ import lombok.Data;
 
 import java.math.BigInteger;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Data
 public class RandomRecDto {
@@ -19,6 +21,6 @@ public class RandomRecDto {
         this.name = name;
         this.is_free = is_free;
         this.header_image = header_image;
-        this.genres = List.of(genres.split(","));
+        this.genres = Stream.of(genres.split(",")).limit(2).collect(Collectors.toList());
     }
 }

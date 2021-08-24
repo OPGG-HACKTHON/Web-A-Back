@@ -5,6 +5,8 @@ import lombok.RequiredArgsConstructor;
 
 import java.math.BigInteger;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @RequiredArgsConstructor
 @Getter
@@ -18,7 +20,7 @@ public class RouletteRecDto {
         this.id = id.longValue();
         this.name = name;
         this.header_image = header_image;
-        this.genres = List.of(genres.split(","));
+        this.genres = Stream.of(genres.split(",")).limit(3).collect(Collectors.toList());
     }
 
     public RouletteRecDto(Long id, String name, String header_image, List<String> genres) {
