@@ -1,6 +1,7 @@
 package opgg.weba.JamPick.util;
 
 import opgg.weba.JamPick.domain.*;
+import opgg.weba.JamPick.repository.IndieAppRepository;
 
 import javax.persistence.EntityManager;
 import java.text.SimpleDateFormat;
