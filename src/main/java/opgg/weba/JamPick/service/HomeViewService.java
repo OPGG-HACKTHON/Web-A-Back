@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Transactional
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class HomeViewService {
 
@@ -17,10 +17,10 @@ public class HomeViewService {
 
     public HomeViewDto getHomeData() {
 
-        HomeViewDto homeViewDto = new HomeViewDto();
-
         List<RandomRecDto> randomRecDto = randomRecService.findRandomApps();
 
-        return homeViewDto; //Temp
+        HomeViewDto homeViewDto = new HomeViewDto(randomRecDto);
+
+        return homeViewDto;
     }
 }
