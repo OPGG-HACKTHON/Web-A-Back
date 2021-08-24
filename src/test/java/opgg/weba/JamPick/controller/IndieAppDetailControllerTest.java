@@ -1,3 +1,4 @@
+
 package opgg.weba.JamPick.controller;
 
 import opgg.weba.JamPick.domain.IndieApp;
@@ -64,11 +65,11 @@ class IndieAppDetailControllerTest {
         IndieAppDetail indieAppDetail = indieAppDetailOptional.get();
 
         mockMvc.perform(
-                get("/api/detail/1")
-                        .locale(Locale.KOREA)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .accept(MediaType.APPLICATION_JSON)
-        )
+                        get("/api/detail/1")
+                                .locale(Locale.KOREA)
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .accept(MediaType.APPLICATION_JSON)
+                )
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.data.id").value(equalTo(indieAppDetail.getId().intValue())))

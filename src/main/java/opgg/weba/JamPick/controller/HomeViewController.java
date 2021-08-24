@@ -1,6 +1,7 @@
 package opgg.weba.JamPick.controller;
 
 import lombok.RequiredArgsConstructor;
+import opgg.weba.JamPick.dto.HomeViewDto;
 import opgg.weba.JamPick.dto.ResponseDto;
 import opgg.weba.JamPick.dto.RouletteRecDto;
 import opgg.weba.JamPick.service.HomeViewService;
@@ -35,7 +36,7 @@ public class HomeViewController {
     @GetMapping(value = "/home")
     public ResponseEntity getHome() {
 
-        Integer result = 1; //TODO -> DTO 생성해서 넣기
+        HomeViewDto result = homeViewService.getHomeData();
 
         ResponseDto responseDto = ResponseDto.builder()
                 .status(200)
