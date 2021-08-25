@@ -37,10 +37,9 @@ public class Util {
 
     public static List<Genre> createGenres(EntityManager em, IndieApp indieApp, Integer count) {
         ArrayList<Genre> genres = new ArrayList<>();
+        Random random = new Random();
 
         for (String lang : new String[]{KR_LANG, EN_LANG}) {
-            Random random = new Random();
-
             Set<Integer> set = new LinkedHashSet<>();
             while (set.size() < count) {
                 set.add(random.nextInt(GENRE_IDS.length));
@@ -57,7 +56,6 @@ public class Util {
             }
         }
 
-        System.out.println(genres.size());
 
         return genres;
     }
@@ -99,7 +97,7 @@ public class Util {
 
         for (String lang : new String[]{KR_LANG, EN_LANG}) {
             IndieAppDetail indieAppDetail = new IndieAppDetail();
-            indieAppDetail.setId(lang.equals(KR_LANG) ? indieApp.getId() : indieApp.getId() + 1);
+            indieAppDetail.setId(lang.equals(KR_LANG) ? indieApp.getId() : indieApp.getId() + 1000);
             indieAppDetail.setLanguage(lang);
             indieAppDetail.setShortDescription(getRandomText(50));
             indieAppDetail.setReleaseDate(getRandomDateString(lang));
@@ -131,7 +129,6 @@ public class Util {
         indieApp.setName(getRandomText(10));
         indieApp.setHeaderImage(getRandomUrl());
 
-//        return indieAppRepository.save(indieApp);
         return indieApp;
     }
 }
