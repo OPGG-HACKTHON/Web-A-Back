@@ -78,7 +78,7 @@ public class HomeViewControllerTest {
 //                                ), -> 스트링 타입이 안됨(org.springframework.restdocs.payload.PayloadHandlingException: Cannot handle application/json;charset=UTF-8 content as it could not be parsed as JSON or XML)
                                 responseFields(
                                         fieldWithPath("status").type(JsonFieldType.NUMBER).description("상태 코드"),
-                                        fieldWithPath("responseMessage").type(JsonFieldType.STRING).description("응답 메시지"),
+                                        fieldWithPath("response_message").type(JsonFieldType.STRING).description("응답 메시지"),
                                         fieldWithPath("data.id").type(JsonFieldType.NUMBER).description("인디 앱 아이디"),
                                         fieldWithPath("data.name").type(JsonFieldType.STRING).description("인디 앱 이름"),
                                         fieldWithPath("data.header_image").type(JsonFieldType.STRING).description("인디 앱 헤더 이미지"),
