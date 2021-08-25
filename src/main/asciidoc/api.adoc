@@ -2,6 +2,8 @@
 
 This is an example output for a service running at http://localhost:8080:
 
+== 홈 뷰
+
 .request
 include::{snippets}/HomeView/http-request.adoc[]
 .request body
@@ -11,5 +13,17 @@ include::{snippets}/HomeView/request-body.adoc[]
 include::{snippets}/HomeView/http-response.adoc[]
 .response body
 include::{snippets}/HomeView/response-body.adoc[]
+
+== 인디게임 상세
+
+.request
+include::{snippets}/IndieAppDetail/http-request.adoc[]
+.path parameter
+include::{snippets}/IndieAppDetail/path-parameters.adoc[]
+
+.response
+include::{snippets}/IndieAppDetail/http-response.adoc[]
+.response fields
+include::{snippets}/IndieAppDetail/response-fields.adoc[]
 
 As you can see the format is very simple, and in fact you always get the same message.
