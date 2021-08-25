@@ -128,6 +128,7 @@ public class Util {
         indieApp.setAverageForever(0);
         indieApp.setName(getRandomText(10));
         indieApp.setHeaderImage(getRandomUrl());
+        indieApp.setIsFree(false);
 
         return indieApp;
     }
