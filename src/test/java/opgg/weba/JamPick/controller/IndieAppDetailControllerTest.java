@@ -54,7 +54,7 @@ class IndieAppDetailControllerTest {
 
     @BeforeEach
     void setUp() {
-        IndieApp indieApp = Util.createIndieApp(indieAppRepository, 1L);
+        IndieApp indieApp = indieAppRepository.save(Util.createIndieApp(indieAppRepository, 1L));
 
         Util.createIndieAppDetail(em, indieApp);
 
