@@ -16,7 +16,7 @@ public class IndieAppDetail {
     @Column(name = "release_date")
     private String releaseDate;
 
-    @Column(name = "short_description")
+    @Column(name = "short_description", columnDefinition = "LONGTEXT")
     private String shortDescription;
 
     @Column(name = "language")
