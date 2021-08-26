@@ -1,0 +1,2 @@
+spring.profiles.active: "test"
+spring.config.import: file:src/main/resources/application.yml

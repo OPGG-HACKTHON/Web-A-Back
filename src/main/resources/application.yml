@@ -7,7 +7,7 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/jampick?serverTimezone=UTC&characterEncoding=UTF-8
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/${MYSQL_DATABASE:jampick}?serverTimezone=UTC&characterEncoding=UTF-8
     username: root
     password: ${MYSQL_ROOT_PASSWORD:mysql}
   jpa:
