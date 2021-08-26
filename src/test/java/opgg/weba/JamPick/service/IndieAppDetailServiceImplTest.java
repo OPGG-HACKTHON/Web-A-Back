@@ -13,9 +13,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 import java.util.Locale;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -26,35 +28,39 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class IndieAppDetailServiceImplTest {
 
     @Autowired
+    EntityManager em;
+    @Autowired
     private IndieAppDetailServiceImpl indieAppDetailService;
-
     @Autowired
     private IndieAppRepository indieAppRepository;
-
-    @Autowired
-    EntityManager em;
-
+    private List<IndieAppDetail> indieAppDetails;
 
     @BeforeEach
     void setUp() {
-        Util.createIndieApp(indieAppRepository, 1L);
+        IndieApp indieApp = indieAppRepository.save(Util.createIndieApp(indieAppRepository, 1L));
+
+        indieAppDetails = Util.createIndieAppDetail(em, indieApp);
+
+        Util.createGenres(em, indieApp, 3);
+
+        Util.createMovies(em, indieApp, 3);
+
+        Util.createScreenshots(em, indieApp, 3);
     }
 
     @Test
     void testGetIndieAppDetail() {
         // given
-        IndieApp indieApp = indieAppRepository.getById(1L);
-
-        Util.createIndieAppDetail(em, indieApp);
 
         // when
-        IndieAppDetailDto indieAppDetailDto = indieAppDetailService.getIndieAppDetail(indieApp.getId());
+        LocaleContextHolder.setLocale(Locale.KOREA);
+        IndieAppDetailDto indieAppDetailDto = indieAppDetailService.getIndieAppDetail(1L);
 
         // then
         Locale locale = GetLocale.getLocale();
         IndieAppDetail expectIndieAppDetail = null;
 
-        for (IndieAppDetail indieAppDetail : indieApp.getIndieAppDetails()) {
+        for (IndieAppDetail indieAppDetail : indieAppDetails) {
             if (indieAppDetail.getLanguage().equals(locale.toString())) {
                 expectIndieAppDetail = indieAppDetail;
             }

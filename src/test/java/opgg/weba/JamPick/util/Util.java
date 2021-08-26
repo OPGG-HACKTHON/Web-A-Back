@@ -37,25 +37,26 @@ public class Util {
 
     public static List<Genre> createGenres(EntityManager em, IndieApp indieApp, Integer count) {
         ArrayList<Genre> genres = new ArrayList<>();
-        Random random = new Random();
 
-        for (String lang : new String[]{KR_LANG, EN_LANG}) {
-            Set<Integer> set = new LinkedHashSet<>();
-            while (set.size() < count) {
-                set.add(random.nextInt(GENRE_IDS.length));
-            }
-
-            for (Integer i : set) {
-                Genre genre = new Genre();
-                genre.setGenreId(GENRE_IDS[i]);
-                genre.setDescription(lang.equals(KR_LANG) ? KR_GENRE_DESCRIPTION[i] : EN_GENRE_DESCRIPTION[i]);
-                genre.setLanguage(lang);
-                genre.setIndieApp(indieApp);
-                em.merge(genre);
-                genres.add(genre);
-            }
+        for (int i = 0; i < count; i+=1) {
+            Genre genre = new Genre();
+            genre.setGenreId(GENRE_IDS[i]);
+            genre.setDescription(KR_GENRE_DESCRIPTION[i]);
+            genre.setLanguage(KR_LANG);
+            genre.setIndieApp(indieApp);
+            em.merge(genre);
+            genres.add(genre);
         }
 
+        for (int i = count; i < count * 2; i+=1) {
+            Genre genre = new Genre();
+            genre.setGenreId(GENRE_IDS[i]);
+            genre.setDescription(EN_GENRE_DESCRIPTION[i]);
+            genre.setLanguage(EN_LANG);
+            genre.setIndieApp(indieApp);
+            em.merge(genre);
+            genres.add(genre);
+        }
 
         return genres;
     }
