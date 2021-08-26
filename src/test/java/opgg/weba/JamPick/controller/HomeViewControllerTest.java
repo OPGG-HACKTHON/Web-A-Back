@@ -131,11 +131,11 @@ public class HomeViewControllerTest {
                 )
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.data.random_rec_list.id").exists())
-                .andExpect(jsonPath("$.data.random_rec_list.name").exists())
-                .andExpect(jsonPath("$.data.random_rec_list.is_free").exists())
-                .andExpect(jsonPath("$.data.random_rec_list.header_image").exists())
-                .andExpect(jsonPath("$.data.random_rec_list.genres").exists());
+                .andExpect(jsonPath("$.data.random_rec_list[0].id").exists())
+                .andExpect(jsonPath("$.data.random_rec_list[0].name").exists())
+                .andExpect(jsonPath("$.data.random_rec_list[0].is_free").exists())
+                .andExpect(jsonPath("$.data.random_rec_list[0].header_image").exists())
+                .andExpect(jsonPath("$.data.random_rec_list[0].genres").exists());
     }
 
     @Test
