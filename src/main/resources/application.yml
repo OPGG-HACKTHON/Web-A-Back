@@ -16,6 +16,8 @@ spring:
     generate-ddl: true
     hibernate:
       ddl-auto: none
+  jackson:
+    property-naming-strategy: SNAKE_CASE
 
 logging.level:
   org.hibernate.SQL: debug

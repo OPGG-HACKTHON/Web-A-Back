@@ -1,0 +1,44 @@
+= Getting Started With Spring REST Docs
+
+This is an example output for a service running at http://localhost:8080:
+
+== 홈 뷰
+
+.request
+include::{snippets}/HomeView/http-request.adoc[]
+
+.response body
+include::{snippets}/HomeView/response-body.adoc[]
+
+.response fields
+include::{snippets}/HomeView/response-fields.adoc[]
+
+== 룰렛 추천
+
+.request
+include::{snippets}/RouletteRecommendation/http-request.adoc[]
+
+.request body
+include::{snippets}/RouletteRecommendation/request-body.adoc[]
+
+.response
+include::{snippets}/RouletteRecommendation/response-body.adoc[]
+
+.response fields
+include::{snippets}/RouletteRecommendation/response-fields.adoc[]
+
+
+== 인디게임 상세
+
+.request
+include::{snippets}/IndieAppDetail/http-request.adoc[]
+
+.path parameter
+include::{snippets}/IndieAppDetail/path-parameters.adoc[]
+
+.response
+include::{snippets}/IndieAppDetail/http-response.adoc[]
+.response fields
+include::{snippets}/IndieAppDetail/response-fields.adoc[]
+
+As you can see the format is very simple, and in fact you always get the same message.

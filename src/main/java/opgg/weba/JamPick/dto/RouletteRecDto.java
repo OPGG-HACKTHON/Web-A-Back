@@ -22,4 +22,11 @@ public class RouletteRecDto {
         this.header_image = header_image;
         this.genres = Stream.of(genres.split(",")).limit(3).collect(Collectors.toList());
     }
+
+    public RouletteRecDto(Long id, String name, String header_image, List<String> genres) {
+        this.id = id;
+        this.name = name;
+        this.header_image = header_image;
+        this.genres = genres;
+    }
 }
