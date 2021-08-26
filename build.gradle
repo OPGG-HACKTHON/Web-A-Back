@@ -24,8 +24,8 @@ dependencies {
 }
 
 asciidoctor {
-	sourceDir 'src/main/asciidoc'
-	attributes 'snippets': file('build/snippets')
+	sourceDir 'src/docs/asciidoc'
+	attributes 'snippets': file('build/generated-snippets')
 }
 
 test {
@@ -35,6 +35,20 @@ test {
 configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
+	}
+}
+
+task copyDocument(type: Copy) {
+	dependsOn asciidoctor
+	from file("build/docs/asciidoc")
+	into file("src/main/resources/static/docs")
+}
+
+bootJar {
+	dependsOn asciidoctor
+	copy {
+		from "${asciidoctor.outputDir}"
+		into 'src/main/resources/static/docs'
 	}
 }
 
