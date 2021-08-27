@@ -11,11 +11,11 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-public class Vote {
+public class IndieChipPick {
 
     @Id @GeneratedValue
-    @Column(name = "vote_id")
-    private Long voteId;
+    @Column(name = "indie_chip_pick_id")
+    private Long indieChipPickId;
 
     @Column(name = "created_at")
     private Date createdAt;
@@ -23,6 +23,6 @@ public class Vote {
     @Column(name = "is_vote_end")
     private Boolean isVoteEnd;
 
-    @OneToMany(mappedBy = "vote")
-    private List<VoteAppDetail> voteAppDetails = new ArrayList<>();
+    @OneToMany(mappedBy = "indieChipPick")
+    private List<IndieChipPickAppDetail> indieChipPickAppDetails = new ArrayList<>();
 }
