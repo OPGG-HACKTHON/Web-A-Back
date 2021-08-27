@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Setter
 public class VoteAppDetail {
 
-    @Id
+    @Id @GeneratedValue
     @Column(name = "vote_app_detail_id")
     private Long voteAppDetailId;
 

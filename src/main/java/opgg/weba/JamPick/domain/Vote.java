@@ -3,10 +3,7 @@ package opgg.weba.JamPick.domain;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -16,7 +13,7 @@ import java.util.List;
 @Setter
 public class Vote {
 
-    @Id
+    @Id @GeneratedValue
     @Column(name = "vote_id")
     private Long voteId;
 
