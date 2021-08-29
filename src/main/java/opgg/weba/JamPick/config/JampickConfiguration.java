@@ -5,12 +5,14 @@ import org.modelmapper.convention.NamingConventions;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver;
 
 import java.util.Locale;
 
 @Configuration
-public class JampickConfiguration {
+public class JampickConfiguration implements WebMvcConfigurer {
     @Bean
     public ModelMapper modelMapper() {
         ModelMapper modelMapper = new ModelMapper();
@@ -21,6 +23,7 @@ public class JampickConfiguration {
         return modelMapper;
     }
 
+
     @Bean
     public LocaleResolver localeResolver() {
 
@@ -28,5 +31,12 @@ public class JampickConfiguration {
         localeResolver.setDefaultLocale(Locale.KOREA);
 
         return localeResolver;
+    }
+
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+                .allowedOrigins("*");
+
     }
 }
