@@ -1,6 +1,41 @@
-= Getting Started With Spring REST Docs
+= Jampick API Doc
+:source-highlighter: rouge
 
-This is an example output for a service running at http://localhost:8080:
+Jampick API document
+
+== Response
+
+=== Response 구조
+
+모든 response(성공, 실패)는 아래의 구조를 갖습니다.
+
+[source,json]
+----
+{
+    "code": 0,
+    "response_message": "홈 데이터 불러오기 성공",
+    "data": {
+        "id": 1,
+        "some": "data",
+    }
+}
+----
+* `+code+`: 요청에 따른 결과 코드입니다. 코드 별 의미는 아래 코드 별 의미 표를 참고 하세요.
+* `+response_message+`: 요청에 따른 응답 메시지 입니다.
+* `+data+`: 요청에 따른 데이터입니다. 요청에 따른 에러 발생(http status code 400단 또는 500단) 시 null을 반환합니다.
+
+=== 코드 별 의미
+
+* 성공을 의미하는 코드는 0부터 99까지 입니다.
+* 실패를 의미하는 코드는 100부터 200까지 입니다.
+
+|===
+|Code, Header Row | Mean, Header Row
+|0 | 요청을 성공적으로 처리 했음을 의미합니다. HTTP STATUS code 200단을 의미합니다
+|100 | 요청에 일치하는 데이터가 없을을 의미합니다. HTTP STATUS code 404를 의미합니다
+|150 | 서버 쪽 오류를 의미합니다. HTTP STATUS code 500단을 의미합니다.
+|===
+
 
 === 참고
 ==== Http request header 부분에 Accept-language를 채워서 요청을 보내야 합니다. 이 부분을 채워 넣지 않을 시 한국어 데이터가 응답됩니다.
