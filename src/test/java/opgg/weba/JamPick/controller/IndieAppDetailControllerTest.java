@@ -86,7 +86,7 @@ class IndieAppDetailControllerTest {
                                 getDocumentResponse(),
                                 pathParameters(parameterWithName("id").description("인디 앱 id")),
                                 responseFields(
-                                        fieldWithPath("status").type(JsonFieldType.NUMBER).description("상태 코드"),
+                                        fieldWithPath("code").type(JsonFieldType.NUMBER).description("코드"),
                                         fieldWithPath("response_message").type(JsonFieldType.STRING).description("응답 메시지"),
                                         fieldWithPath("data.id").type(JsonFieldType.NUMBER).description("인디 앱 상세 아이디"),
                                         fieldWithPath("data.name").type(JsonFieldType.STRING).description("인디 앱 이름"),
