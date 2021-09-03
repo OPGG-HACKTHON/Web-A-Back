@@ -2,6 +2,15 @@
 
 This is an example output for a service running at http://localhost:8080:
 
+=== 참고
+==== Http request header 부분에 Accept-language를 채워서 요청을 보내야 합니다. 이 부분을 채워 넣지 않을 시 한국어 데이터가 응답됩니다.
+
+[cols=",",options="header",]
+|===
+|KEY |VALUE
+|Accept-Language |ko-KR (or en-US)
+|===
+
 == 홈 뷰
 
 .request
