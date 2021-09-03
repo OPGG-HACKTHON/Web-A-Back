@@ -1,12 +1,11 @@
 package opgg.weba.JamPick.service;
 
 import lombok.RequiredArgsConstructor;
-import opgg.weba.JamPick.dto.RouletteRecDto;
+import opgg.weba.JamPick.dto.RouletteRecRequestDto;
+import opgg.weba.JamPick.dto.RouletteRecResponseDto;
 import opgg.weba.JamPick.repository.RouletteRecRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
@@ -15,7 +14,7 @@ public class RouletteRecService {
 
     private final RouletteRecRepository rouletteRecRepository;
 
-    public RouletteRecDto findRouletteApp(List<String> request) {
+    public RouletteRecResponseDto findRouletteApp(RouletteRecRequestDto request) {
         return rouletteRecRepository.findOne(request);
     }
 }
