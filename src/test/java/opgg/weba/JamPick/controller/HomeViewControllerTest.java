@@ -3,6 +3,7 @@ package opgg.weba.JamPick.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import opgg.weba.JamPick.domain.Genre;
 import opgg.weba.JamPick.domain.IndieApp;
+import opgg.weba.JamPick.dto.RouletteRecRequestDto;
 import opgg.weba.JamPick.repository.IndieAppRepository;
 import opgg.weba.JamPick.service.RouletteRecService;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,8 +19,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
 import static opgg.weba.JamPick.util.ApiDocumentUtils.getDocumentRequest;
@@ -141,13 +140,13 @@ public class HomeViewControllerTest {
     @Test
     public void GetRouletteAppApiTest() throws Exception {
 
-        List<String> request = new ArrayList<>();
-        request.add("스포츠");
-        request.add("액션");
+        RouletteRecRequestDto rouletteRecRequestDto = new RouletteRecRequestDto();
+        rouletteRecRequestDto.getGenres().add("스포츠");
+        rouletteRecRequestDto.getGenres().add("액션");
 
         mockMvc.perform(
                 RestDocumentationRequestBuilders.post("/api/roulette-recommendation")
-                        .content(objectMapper.writeValueAsString(request))
+                        .content(objectMapper.writeValueAsString(rouletteRecRequestDto))
                         .locale(Locale.KOREA)
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
@@ -157,7 +156,7 @@ public class HomeViewControllerTest {
                                 getDocumentRequest(),
                                 getDocumentResponse(),
                                 requestFields(
-                                        fieldWithPath("[]").description("유저가 선택한 장르 리스트")
+                                        fieldWithPath("genres.[]").type(JsonFieldType.ARRAY).description("유저가 선택한 장르 리스트")
                                 ),
                                 responseFields(
                                         fieldWithPath("code").type(JsonFieldType.NUMBER).description("코드"),

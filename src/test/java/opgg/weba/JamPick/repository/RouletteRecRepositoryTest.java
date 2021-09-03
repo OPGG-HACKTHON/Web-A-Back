@@ -2,8 +2,8 @@ package opgg.weba.JamPick.repository;
 
 import opgg.weba.JamPick.domain.Genre;
 import opgg.weba.JamPick.domain.IndieApp;
-import opgg.weba.JamPick.dto.RouletteRecDto;
-import org.assertj.core.api.Assertions;
+import opgg.weba.JamPick.dto.RouletteRecRequestDto;
+import opgg.weba.JamPick.dto.RouletteRecResponseDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import java.util.ArrayList;
-import java.util.List;
 
 @SpringBootTest
 @Transactional
@@ -75,12 +73,12 @@ public class RouletteRecRepositoryTest {
     public void RouletteRecRepositoryTest() {
 
         //given
-        List<String> request = new ArrayList<>();
-        request.add("스포츠");
-        request.add("액션");
+        RouletteRecRequestDto rouletteRecRequestDto = new RouletteRecRequestDto();
+        rouletteRecRequestDto.getGenres().add("스포츠");
+        rouletteRecRequestDto.getGenres().add("액션");
 
         //when
-        RouletteRecDto rouletteApp = rouletteRecRepository.findOne(request);
+        RouletteRecResponseDto rouletteApp = rouletteRecRepository.findOne(rouletteRecRequestDto);
 
         //then
         System.out.println("rouletteApp = " + rouletteApp.getGenres());
