@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Builder
 public class ResponseDto {
-    private final int status;
+    private final int code;
     private final String responseMessage;
     private final Object data;
 }

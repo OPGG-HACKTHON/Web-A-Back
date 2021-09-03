@@ -25,7 +25,7 @@ public class HomeViewController {
         RouletteRecDto result = rouletteRecService.findRouletteApp(request);
 
         ResponseDto responseDto = ResponseDto.builder()
-                .status(200)
+                .code(0)
                 .responseMessage("룰렛 인디게임 조회 성공")
                 .data(result)
                 .build();
@@ -39,7 +39,7 @@ public class HomeViewController {
         HomeViewDto result = homeViewService.getHomeData();
 
         ResponseDto responseDto = ResponseDto.builder()
-                .status(200)
+                .code(0)
                 .responseMessage("홈 뷰 데이터 조회 성공")
                 .data(result)
                 .build();

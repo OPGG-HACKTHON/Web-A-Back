@@ -22,7 +22,7 @@ public class IndieAppDetailController {
         IndieAppDetailDto indieAppDetailDto = indieAppDetailService.getIndieAppDetail(indieAppId);
 
         ResponseDto responseDto = ResponseDto.builder()
-                .status(200)
+                .code(0)
                 .responseMessage("상세 조회 성공")
                 .data(indieAppDetailDto)
                 .build();

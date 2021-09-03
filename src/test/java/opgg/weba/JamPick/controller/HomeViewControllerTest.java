@@ -119,7 +119,7 @@ public class HomeViewControllerTest {
                                 getDocumentRequest(),
                                 getDocumentResponse(),
                                 responseFields(
-                                        fieldWithPath("status").type(JsonFieldType.NUMBER).description("상태 코드"),
+                                        fieldWithPath("code").type(JsonFieldType.NUMBER).description("코드"),
                                         fieldWithPath("response_message").type(JsonFieldType.STRING).description("응답 메시지"),
                                         fieldWithPath("data.random_rec_list.[].id").type(JsonFieldType.NUMBER).description("인디 앱 아이디"),
                                         fieldWithPath("data.random_rec_list.[].name").type(JsonFieldType.STRING).description("인디 앱 이름"),
@@ -160,7 +160,7 @@ public class HomeViewControllerTest {
                                         fieldWithPath("[]").description("유저가 선택한 장르 리스트")
                                 ),
                                 responseFields(
-                                        fieldWithPath("status").type(JsonFieldType.NUMBER).description("상태 코드"),
+                                        fieldWithPath("code").type(JsonFieldType.NUMBER).description("코드"),
                                         fieldWithPath("response_message").type(JsonFieldType.STRING).description("응답 메시지"),
                                         fieldWithPath("data.id").type(JsonFieldType.NUMBER).description("인디 앱 아이디"),
                                         fieldWithPath("data.name").type(JsonFieldType.STRING).description("인디 앱 이름"),
