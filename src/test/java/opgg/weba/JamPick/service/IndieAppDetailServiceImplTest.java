@@ -71,7 +71,7 @@ class IndieAppDetailServiceImplTest {
 
         RuntimeException runtimeException = assertThrows(RuntimeException.class, () -> indieAppDetailService.getIndieAppDetail(200L));
         assertThat(runtimeException.getMessage()).isEqualTo(
-                JampickException.throwException(EntityType.INDIE_APP_DETAIL, ExceptionType.ENTITY_NOT_FOUND, String.valueOf(200L)).getMessage()
+                JampickException.throwException(EntityType.INDIE_APP_DETAIL, ExceptionType.ENTITY_NOT_FOUND, String.format("Game Id: %s, Language: %s", 200L, locale.toString())).getMessage()
         );
     }
 }
