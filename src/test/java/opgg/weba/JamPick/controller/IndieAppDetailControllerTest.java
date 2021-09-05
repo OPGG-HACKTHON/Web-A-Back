@@ -1,5 +1,6 @@
 package opgg.weba.JamPick.controller;
 
+import opgg.weba.JamPick.common.ResponseCode;
 import opgg.weba.JamPick.domain.IndieApp;
 import opgg.weba.JamPick.domain.IndieAppDetail;
 import opgg.weba.JamPick.repository.IndieAppDetailRepository;
@@ -25,6 +26,7 @@ import static opgg.weba.JamPick.util.ApiDocumentUtils.getDocumentRequest;
 import static opgg.weba.JamPick.util.ApiDocumentUtils.getDocumentResponse;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.nullValue;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
 import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
@@ -117,5 +119,30 @@ class IndieAppDetailControllerTest {
                 .andExpect(jsonPath("$.data.screenshots[2]").exists());
 
 
+    }
+
+    @Test
+    void getIndieAppDetailNotFoundException() throws Exception {
+        mockMvc.perform(
+                RestDocumentationRequestBuilders.get("/api/detail/{id}", 100000)
+                        .locale(Locale.KOREA)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON)
+        )
+                .andDo(print())
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.code").value(ResponseCode.NOT_FOUND.getValue()))
+                .andExpect(jsonPath("$.data").value(nullValue()));
+
+        mockMvc.perform(
+                RestDocumentationRequestBuilders.get("/api/detail/{id}", 1)
+                        .locale(Locale.CHINA)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON)
+        )
+                .andDo(print())
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.code").value(ResponseCode.NOT_FOUND.getValue()))
+                .andExpect(jsonPath("$.data").value(nullValue()));
     }
 }

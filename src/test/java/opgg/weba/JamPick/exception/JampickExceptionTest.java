@@ -6,13 +6,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.MessageFormat;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
-public class DemoExceptionTest {
+public class JampickExceptionTest {
 
     @Test
     void testExceptionType() {
@@ -39,7 +40,7 @@ public class DemoExceptionTest {
         String msgTemplate = "Test Exception {0} {1}";
 
         assertThat(JampickException.throwException(msgTemplate, "arg1", "arg2").getMessage()).isEqualTo(
-                String.format(msgTemplate, "arg1", "arg2")
+                MessageFormat.format(msgTemplate, "arg1", "arg2")
         );
     }
 
@@ -55,7 +56,7 @@ public class DemoExceptionTest {
 
             for (EntityType entityType : EntityType.values()) {
                 assertThat(JampickException.throwException(entityType, exceptionType, "arg1").getMessage()).isEqualTo(
-                        String.format(msgTemplate, entityType.getValue(), "arg1")
+                        MessageFormat.format(msgTemplate, entityType.getValue(), "arg1")
                 );
             }
         }

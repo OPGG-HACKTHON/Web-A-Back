@@ -48,6 +48,6 @@ public class IndieAppDetailServiceImpl implements IndieAppDetailService {
             return indieAppDetailDto;
         }
 
-        throw JampickException.throwException(EntityType.INDIE_APP_DETAIL, ExceptionType.ENTITY_NOT_FOUND, String.valueOf(indieAppId));
+        throw JampickException.throwException(EntityType.INDIE_APP_DETAIL, ExceptionType.ENTITY_NOT_FOUND, String.format("Game Id: %s, Language: %s", indieAppId, localeString));
     }
 }
