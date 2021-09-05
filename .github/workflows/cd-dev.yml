@@ -1,22 +1,17 @@
 name: CD Dev
 
-on: [ pull_request ]
+on:
+  push:
+    branches:
+      - develop
+      - feature/26-cd
 
 jobs:
-  ci:
+  cd:
     runs-on: ubuntu-latest
     env:
       S3_BUCKET_NAME: jampick-server
       S3_FOLDER_NAME: dev
-    services:
-      mysql:
-        image: mysql:5.7
-        env:
-          MYSQL_DATABASE: jampick
-          MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
-        ports:
-          - "3306:3306"
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=10
 
     steps:
       - uses: actions/checkout@v2
@@ -25,6 +20,13 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
+
+      - name: Set up MySQL
+        uses: mirromutth/mysql-action@v1.1
+        with:
+          mysql version: '5.7'
+          mysql database: 'jampick_test'
+          mysql root password: ${{ secrets.MYSQL_ROOT_PASSWORD }}
 
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
@@ -40,7 +42,9 @@ jobs:
             ${{ runner.os }}-gradle-
 
       - name: Build with Gradle
-        run: ./gradlew build -x test
+        env:
+          MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
+        run: ./gradlew build -i
 
       - name: Make zip file
         run: zip -qq -r ./$GITHUB_SHA.zip .
@@ -50,15 +54,13 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
+          aws-region: us-east-2
 
       - name: Upload to S3
-        env:
-          AWS_REGION: ${{ secrets.AWS_REGION }}
-        run: aws s3 cp --region $AWS_REGION ./$GITHUB_SHA.zip s3://$S3_BUCKET_NAME/$S3_FOLDER_NAME/$GITHUB_SHA.zip
+        run: aws s3 cp --region us-east-2 ./$GITHUB_SHA.zip s3://$S3_BUCKET_NAME/$S3_FOLDER_NAME/$GITHUB_SHA.zip
 
       - name: Code Deploy
-        run: aws deploy create-deployment --application-name jampick-app --deployment-config-name CodeDeployDefault.OneAtATime --deployment-group-name jampick-group --s3-location bucket=$S3_BUCKET_NAME,bundleType=zip,key=$S3_FOLDER_NAMEyes/$GITHUB_SHA.zip
+        run: aws deploy create-deployment --application-name jampick-app --deployment-config-name CodeDeployDefault.OneAtATime --deployment-group-name jampick-group --s3-location bucket=$S3_BUCKET_NAME,bundleType=zip,key=$S3_FOLDER_NAME/$GITHUB_SHA.zip
 
       - name: Cleanup Gradle Cache
         # Remove some files from the Gradle cache, so they aren't cached by GitHub Actions.
