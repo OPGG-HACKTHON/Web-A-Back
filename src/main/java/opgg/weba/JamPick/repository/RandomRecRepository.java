@@ -24,7 +24,7 @@ public class RandomRecRepository {
         JpaResultMapper jpaResultMapper = new JpaResultMapper();
         String sql = "SELECT i.indie_app_id, i.name, i.is_free, i.header_image, group_concat(g.description separator ',') FROM indie_app AS i" +
                 " JOIN genre AS g ON i.indie_app_id = g.indie_app_id WHERE g.language = :locale" +
-                " group by i.indie_app_id, i.name";
+                " group by i.indie_app_id, i.name order by rand()";
 
         Query nativeQuery = em.createNativeQuery(sql).setParameter("locale", locale).setMaxResults(12);
         List<RandomRecDto> results = jpaResultMapper.list(nativeQuery, RandomRecDto.class);
