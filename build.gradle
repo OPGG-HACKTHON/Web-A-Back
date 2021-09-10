@@ -33,9 +33,11 @@ asciidoctor {
 	attributes 'snippets': file('build/generated-snippets')
 }
 
-configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
+bootJar {
+	dependsOn asciidoctor
+	copy {
+		from "${asciidoctor.outputDir}"
+		into 'src/main/resources/static/docs'
 	}
 }
 
@@ -45,11 +47,9 @@ task copyDocument(type: Copy) {
 	into file("src/main/resources/static/docs")
 }
 
-bootJar {
-	dependsOn asciidoctor
-	copy {
-		from "${asciidoctor.outputDir}"
-		into 'src/main/resources/static/docs'
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
 	}
 }
 
@@ -57,5 +57,6 @@ repositories {
 	mavenCentral()
 }
 
-
-
+build {
+	dependsOn copyDocument
+}
