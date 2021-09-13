@@ -32,4 +32,7 @@ public interface IndieAppRepository extends JpaRepository<IndieApp, Long> {
             nativeQuery = true
     )
     List<String> findScreenshots(@Param("id") Long indieAppId);
+
+    @Query("SELECT i.name from IndieApp i where i.id = :id")
+    String findNameById(@Param("id") Long indieAppId);
 }

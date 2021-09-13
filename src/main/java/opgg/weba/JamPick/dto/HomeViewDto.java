@@ -8,4 +8,6 @@ import java.util.List;
 public class HomeViewDto {
 
     private final List<RandomRecDto> randomRecList;
+
+    private final List<IndieChipPickDto> indieChipPickList;
 }

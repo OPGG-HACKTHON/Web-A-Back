@@ -10,24 +10,21 @@ import opgg.weba.JamPick.service.RouletteRecService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.Map;
-
 @RestController
 @RequestMapping("/api")
-@ControllerAdvice
+//@ControllerAdvice
 @RequiredArgsConstructor
 public class HomeViewController {
 
     private final RouletteRecService rouletteRecService;
     private final HomeViewService homeViewService;
 
-    @ExceptionHandler(value = Exception.class)
-    public Map<String, String> handleException(Exception e) {
-        Map<String, String> map = new HashMap<>();
-        map.put("errMsg", e.getMessage());
-        return map;
-    }
+//    @ExceptionHandler(value = Exception.class)
+//    public Map<String, String> handleException(Exception e) {
+//        Map<String, String> map = new HashMap<>();
+//        map.put("errMsg", e.getMessage());
+//        return map;
+//    }
 
     @PostMapping(value = "/roulette-recommendation")
     public ResponseEntity getRouletteApp(@RequestBody RouletteRecRequestDto request) {
