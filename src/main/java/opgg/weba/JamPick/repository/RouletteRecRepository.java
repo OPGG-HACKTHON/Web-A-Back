@@ -42,7 +42,7 @@ public class RouletteRecRepository {
 
             sql = "SELECT i.indie_app_id, i.name, i.header_image, group_concat(g.description separator ',') FROM indie_app AS i" +
                     " JOIN genre AS g ON i.indie_app_id = g.indie_app_id" +
-                    " WHERE g.language = :locale AND i.indie_app_id IN (SELECT i.indie_app_id FROM genre WHERE description IN (:genreList) group by i.indie_app_id)" +
+                    " WHERE g.language = :locale AND i.indie_app_id IN (SELECT g.indie_app_id FROM genre AS g WHERE g.description IN (:genreList))" +
                     " group by i.indie_app_id, i.name, i.header_image ORDER BY rand()";
 
             nativeQuery = em.createNativeQuery(sql)
